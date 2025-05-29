@@ -27,7 +27,6 @@ func main() {
 		Handler: router,
 	}
 
-	// Настраиваем обработку сигналов остановки в отдельной горутине
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 
@@ -42,7 +41,6 @@ func main() {
 		}
 	}()
 
-	// Запуск сервера в основной горутине
 	log.Printf("Server starting on port %d", cfg.Port)
 	if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 		log.Fatalf("Error starting server: %v", err)
