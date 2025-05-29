@@ -8,10 +8,8 @@ import (
 func NewRouter(handler *Handler) *chi.Mux {
 	r := chi.NewRouter()
 
-	// Middleware
 	r.Use(middleware.Logger, middleware.Recoverer)
 
-	// Маршруты
 	r.Route("/quotes", func(r chi.Router) {
 		r.Post("/", handler.CreateQuote)
 		r.Get("/", handler.GetAllQuotes)
